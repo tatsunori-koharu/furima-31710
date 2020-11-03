@@ -43,7 +43,6 @@
 | ----------------- | ---------- | ------------------------------ |
 | item              | references | null: false, foreign_kye: true |
 | user              | references | null: false, foreign_kye: true |
-| cerated_at        | datetime   | null: false                    |
 
 ## Association
 
