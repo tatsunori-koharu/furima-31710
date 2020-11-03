@@ -1,24 +1,51 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column               | Type   | Options     |
+| -------------------- | ------ | ----------- |
+| nickname             | string | null: false |
+| email                | string | null: false |
+| password             | string | null: false |
+| first_name           | string | null: false |
+| first_name_furigana  | string | null: false |
+| family_name          | string | null: false |
+| family_name_furigana | string | null; false |
+| birthday             | date   | null: false |
 
-* Ruby version
+## Association
 
-* System dependencies
+- has_many :items
+- has_many :orders
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| name        | string     | null: false                    |
+| price       | integer    | null: false                    |
+| explanation | text       | null: false                    |
+| user        | references | null: false, foreign_kye: true |
 
-* Database initialization
+## Association 
 
-* How to run the test suite
+- belongs_to :user
+- has_one    :order
 
-* Services (job queues, cache servers, search engines, etc.)
+## order テーブル
 
-* Deployment instructions
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| price          | integer    | null: false                    |
+| postal_code    | integer    | null: false                    |
+| prefectures_id | integer    | null: false                    |
+| municipality   | string     | null: false                    |
+| address        | integer    | null: false                    |
+| phone_number   | integer    | null: false                    |
+| item           | references | null: false, foreign_kye: true |
+| user           | references | null: false, foreign_kye: true |
 
-* ...
+## Association
+
+- belongs_to :user
+- has_one    :item
