@@ -7,6 +7,7 @@
 | nickname             | string | null: false               |
 | email                | string | null: false, unique: true |
 | password             | string | null: false               |
+| encrypted_password   | string | null: false               |
 | first_name           | string | null: false               |
 | first_name_furigana  | string | null: false               |
 | last_name            | string | null: false               |
@@ -17,7 +18,6 @@
 
 - has_many :items
 - has_many :orders
-- has_one  :street_address
 
 ## items テーブル
 
@@ -45,7 +45,6 @@
 | ----------------- | ---------- | ------------------------------ |
 | item              | references | null: false, foreign_kye: true |
 | user              | references | null: false, foreign_kye: true |
-| street_address_id | references | null: false, foreign_kye: true |
 | cerated_at        | datetime   | null: false                    |
 
 ## Association
@@ -64,9 +63,8 @@
 | address            | integer    | null: false                    |
 | building_number_id | integer    |                                |
 | phone_number       | integer    | null: false                    |
-| user               | references | null: false, foreign_kye: true |
+| order              | references | null: false, foreign_kye: true |
 
 ## Association
 
-- belongs_to  :user
 - belongs_to  :order
