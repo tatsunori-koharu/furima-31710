@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
   belongs_to :user
   has_one_attached :image
 
@@ -14,4 +16,5 @@ class Item < ApplicationRecord
     validates :user,              foreign_key: true
     validates :image
   end
+    validates :category_id, numericality: { other_than: 1 }
 end
