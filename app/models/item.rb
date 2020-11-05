@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
+  belongs_to :status
   belongs_to :user
   has_one_attached :image
 
@@ -8,13 +9,14 @@ class Item < ApplicationRecord
     validates :name
     validates :price
     validates :explanation
-    validates :category_id
-    validates :status_id
-    validates :shipping_fee_id
-    validates :shipping_area_id
-    validates :shipping_day_id
     validates :user,              foreign_key: true
     validates :image
+    with_options numericality: { other_than: 1 } do
+      validates :category_id
+      validates :status_id
+      validates :shipping_fee_id
+      validates :shipping_area_id
+      validates :shipping_day_id
+    end
   end
-    validates :category_id, numericality: { other_than: 1 }
 end
