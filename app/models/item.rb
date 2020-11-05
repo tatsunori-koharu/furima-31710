@@ -12,5 +12,6 @@ class Item < ApplicationRecord
     validates :shipping_area_id
     validates :shipping_day_id
     validates :user,              foreign_key: true
+    validates :image
   end
 end
