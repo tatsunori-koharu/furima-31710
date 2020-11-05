@@ -58,12 +58,12 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password" )
       end
-      it "passwordに英字と数字を含んでいないと登録できない" do
+      it "passwordに英字のみだと登録できない" do
         @user.password = "iiiiii"
         @user.valid?
         expect(@user.errors.full_messages).to include("Password 半角の英字と数字を含んでください" )
       end
-      it "passwordに英字と数字を含んでいないと登録できない" do
+      it "passwordに数字のみだと登録できない" do
         @user.password = "999999"
         @user.valid?
         expect(@user.errors.full_messages).to include("Password 半角の英字と数字を含んでください" )
