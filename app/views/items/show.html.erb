@@ -29,14 +29,14 @@
         <%= link_to '削除', "#", method: :delete, class:'item-destroy' %>
       <% else %>
       
-        <%= link_to '購入画面に進む', orders_path, class:"item-red-btn"%>
+        <%= link_to '購入画面に進む', item_orders_path(@item.id), class:"item-red-btn"%>
       <% end %>
     <% end %>
     <div class="item-explain-box">
       <span><%= @item.explanation %></span>
     </div>
     <table class="detail-table">
-      <tbody>
+      <tbody> 
         <tr>
           <th class="detail-item">出品者</th>
           <td class="detail-value"><%= @item.user.nickname %></td>
