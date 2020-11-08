@@ -13,8 +13,9 @@ class OrdersController < ApplicationController
 
   def create
     @order_address = OrderAddress.new(order_params)
-    if @order.valid?
-      @order.save
+    if @order_address.valid?
+      pay_item
+      @order_address.save
       return redirect_to root_path
     else
       render 'index'
@@ -23,7 +24,16 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order_address).permit(:token, :postal_code, :prefectures_id, :municipality, :address, :building_number, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:order_address).permit(:postal_code, :prefectures_id, :municipality, :address, :building_number, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+  end
+
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp::Charge.create(
+      amount: order_params[:postal_code, :prefectures_id, :municipality, :address, :building_number, :phone_number],
+      card: order_params[:token],
+      currency:'jpy'
+    )
   end
 
   # def move_to_index
