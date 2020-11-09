@@ -2,13 +2,11 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   # before_action :move_to_index
   def index
-    # binding.pry
     @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
   end
 
   def create
-    # binding.pry
     @order_address = OrderAddress.new(order_params)
     @item = Item.find(params[:item_id])
     if @order_address.valid?
@@ -16,7 +14,7 @@ class OrdersController < ApplicationController
       @order_address.save
       return redirect_to root_path
     else
-      render 'new'
+      render action: :index
     end
   end
   
