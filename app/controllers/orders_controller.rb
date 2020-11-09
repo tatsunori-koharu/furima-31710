@@ -3,31 +3,28 @@ class OrdersController < ApplicationController
   # before_action :move_to_index
   def index
     # binding.pry
-    @order = Order.new
     @item = Item.find(params[:item_id])
-    # @user = User.find(params[:user_id])
-  end
-
-  def new
     @order_address = OrderAddress.new
   end
 
   def create
-    binding.pry
+    # binding.pry
     @order_address = OrderAddress.new(order_params)
+    @item = Item.find(params[:item_id])
     if @order_address.valid?
       pay_item
       @order_address.save
       return redirect_to root_path
     else
-      render 'index'
+      render 'new'
     end
   end
   
 
   private
   def order_params
-    params.require(:order_address).permit(:postal_code, :prefectures_id, :municipality, :address, :building_number, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.permit(:postal_code, :prefectures_id, :municipality, :address, :building_number, 
+      :phone_number, :item_id, :token).merge(user_id: current_user.id)
   end
 
   def pay_item
