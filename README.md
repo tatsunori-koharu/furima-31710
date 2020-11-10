@@ -50,7 +50,7 @@
 - belongs_to :item
 - has_one    :street_address
 
-## street_address
+## address
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
