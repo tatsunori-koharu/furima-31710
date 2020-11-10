@@ -9,7 +9,6 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_one :order
 
-
   with_options presence: true do
     validates :name, length: { maximum: 40 }
     validates :price, format: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width character.' }
