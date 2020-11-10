@@ -51,6 +51,11 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number can't be blank", "Phone number is invalid")
       end
+      it 'phone_numberに（ー）があるとき' do
+        @order_address.phone_number = "090-123-456"
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+      end
     end
   end
 end
