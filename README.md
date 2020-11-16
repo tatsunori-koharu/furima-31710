@@ -17,6 +17,20 @@
 
 - has_many :items
 - has_many :orders
+- has_many :sns_credential
+
+## sns_credential
+
+| Column               | Type       | Options                        |
+| -------------------- | ---------- | ------------------------------ |
+| provider             | string     | null: false                    |
+| uid                  | string     | null: false, unique: true      |
+| user                 | references | null: false, foreign_key: true |
+
+## Association
+- belongs_to :user
+
+
 
 ## items テーブル
 

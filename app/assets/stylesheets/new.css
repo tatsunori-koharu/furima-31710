@@ -232,3 +232,13 @@
   width: 300px;
   height: 180px;
 }
+
+.sns_btn {
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.sns_btn_area {
+  display: inline-block;
+}
