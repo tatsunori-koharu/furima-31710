@@ -18,6 +18,7 @@
 - has_many :items
 - has_many :orders
 - has_many :sns_credential
+- has_many :comment
 
 ## sns_credential
 
@@ -50,6 +51,21 @@
 
 - belongs_to :user
 - has_one    :order
+- has_many   :comment
+
+ ## comment テーブル
+
+| Column       | Type       | Options                        |
+| -------------| ---------- | ------------------------------ |
+| comment      | text       |                                |
+| item         | references | null: false, foreign_key: true |
+| user         | references | null: false, foreign_key: true |
+
+## Association
+
+- belongs_to :items
+- belongs_to :users
+
 
 ## order テーブル
 
