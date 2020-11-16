@@ -15,7 +15,7 @@ class Item < ApplicationRecord
     validates :explanation, length: { maximum: 1000 }
     validates :image
   end
-  with_options numericality: { other_than: 1, message: "[---]意外をお選びください" } do
+  with_options numericality: { other_than: 1, message: "は[---]意外をお選びください" } do
     validates :category_id
     validates :status_id
     validates :shipping_fee_id
