@@ -1,7 +1,6 @@
 if (document.URL.match( /new/) || document.URL.match( /edit/ )) {
   document.addEventListener('DOMContentLoaded', function(){
     const ImageList = document.getElementById('image-area');
-
     //選択した画像を表示
     const createImageHTML = (blob) => {
       //画像表示のdiv生成
