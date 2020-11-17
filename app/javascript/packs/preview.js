@@ -20,7 +20,6 @@ if (document.URL.match( /new/) || document.URL.match( /edit/ )) {
     document.getElementById('item-image').addEventListener('change', function(e){
       //画像が表示されていれれば既存を削除
       const imageContent = document.querySelector('name');
-      console.log(imageContent)
       if (imageContent){
         imageContent.remove();
       }
