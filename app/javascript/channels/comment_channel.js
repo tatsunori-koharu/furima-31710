@@ -1,3 +1,4 @@
+import { addDevServerEntrypoints } from "webpack-dev-server";
 import consumer from "./consumer"
 
 consumer.subscriptions.create("CommentChannel", {
@@ -11,5 +12,10 @@ consumer.subscriptions.create("CommentChannel", {
 
   received(data) {
     // Called when there's incoming data on the websocket for this channel
+    const html = `<p>${data.content.text}</p>`;
+    const comment = document.getElementById('comments');
+    const newComment = document.getElementById('comment_text');
+    comment.insertAdjacentHTML('afterbegin', html);
+    newComment.value='';
   }
 });
